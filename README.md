@@ -1,37 +1,61 @@
-# envelope-template-synthesizer
+# stratified-envelope-injector · V1
 
-Frozen snapshot (2026-04-19) of the **template-based** OpenSCENARIO generator for
-the cross-national highway-behavior study (AD4CHE vs. highD).
+OpenSCENARIO 1.2 generator for the cross-national highway-behavior study
+(AD4CHE vs. highD), built on three ideas:
 
-This approach is preserved here as a standalone reference; the main line of
-development has moved to a **data-driven Chat2Scenario-style replay** pipeline
-(LLM activity labels + real trajectory match + `FollowTrajectoryAction`).
+1. **Per-region envelopes** — behavior dimensions (D1–D14: TTC, THW, PET,
+   gap acceptance, cut-in DHW, lane-change dynamics, …) are locked to
+   percentile bounds derived from AD4CHE (CN) and highD (DE).
+2. **Stratified sampling** — every envelope is keyed on the traffic phase
+   `{F: free-flow, S: synchronised, J: wide-jam}`; the sampler only ever
+   draws from the `(region, stratum)` cell that matches the requested
+   scenario.
+3. **Template injection** — sampled scalars are substituted into
+   parameterised `.xosc.j2` scenario templates (consecutive lane change,
+   cut-in conflict, close following) to emit a ready-to-replay
+   OpenSCENARIO file.
 
-## What this pipeline does
+## Pipeline
 
-1. `nl_llm_parser.parse_scenario_request_llm` classifies a natural-language
-   scenario request into `(template_id, stratum, num_lane_changes, relevant_dimensions)`.
-2. `tier_router` + `sampler` draw parameter values from paper-locked envelopes
-   per `(region, stratum, dimension)` (scenario_envelopes\*.json).
-3. `xosc_emitter.emit_xosc` fills `templates/*.xosc.j2` with the sampled values.
-4. `ambient_xosc.inject_ambient` post-processes the emitted `.xosc` to sprinkle
-   ambient `<ScenarioObject>` entries around ego.
-5. `scene_renderer` / `esmini_renderer` produce a GIF / replay for QA.
+```
+NL text  ──►  nl_llm_parser              (LLM or keyword heuristic)
+              │
+              ▼
+          ScenarioRequest(template_id, stratum, dimensions)
+              │
+              ▼
+          tier_router ──► sampler         (paper-locked envelope → dataset → default)
+              │
+              ▼
+          emit_xosc(template, params)     (Jinja-style substitution)
+              │
+              ▼
+          ambient_xosc.inject_ambient     (sprinkles dataset-derived ambient traffic)
+              │
+              ▼
+          scene_renderer / esmini_renderer
+```
 
 ## Entry points
 
-```
+```bash
+# CLI
 python -m region_envelope_injector.cli \
     --region CN \
-    --text "ego cuts in from left after lead brakes" \
+    --text "ego performs four consecutive lane changes to reach the leftmost lane" \
     --out ./demo/out.xosc
-```
 
-```
+# Web UI
 streamlit run region_envelope_injector/ui/app.py
 ```
 
-## Status
+## Envelopes
 
-**Frozen.** New work in the companion data-driven repo. Use this snapshot when
-you need to reproduce the template-synthesis numbers in the IEEE T-ITS paper.
+`region_envelope_injector/scenario_envelopes_paperlocked.json` carries
+the paper-locked percentile bounds. `bin/rebuild_envelopes_from_paper.py`
+regenerates them from the raw dataset when new recordings are added.
+
+## Version
+
+**V1** — template-driven synthesis.
+Development continues on a V2 line (data-driven real-trajectory replay).
