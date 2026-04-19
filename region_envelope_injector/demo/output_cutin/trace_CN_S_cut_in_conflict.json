@@ -1,0 +1,144 @@
+{
+  "request": {
+    "raw_text": "Target vehicle cuts in front of ego in synchronized-flow highway traffic with tight headway.",
+    "region": "CN",
+    "template_id": "cut_in_conflict",
+    "stratum": "S",
+    "num_lane_changes": 0,
+    "relevant_dimensions": [
+      "D5_cutin_dhw",
+      "D8_pet",
+      "D9_gap_acceptance",
+      "D10_delta_v",
+      "D11_rlonga"
+    ],
+    "notes": [
+      "synchronized keyword detected"
+    ]
+  },
+  "sampled_params": {
+    "cutin_dhw": 21.255153201133954,
+    "pet": 3.0974280766385274,
+    "ego_init_speed": 22.0
+  },
+  "tier_decisions": [
+    {
+      "dim": "D5_cutin_dhw",
+      "tier": "II",
+      "source": "pooled",
+      "rationale": "D5_cutin_dhw: Tier II_in_J, but stratum S not split -> pooled fallback.",
+      "envelope": {
+        "p10": 8.1,
+        "p50": 16.0,
+        "p90": 32.5,
+        "cliffs_delta": 0.11,
+        "fdr_p": 0.19
+      }
+    },
+    {
+      "dim": "D8_pet",
+      "tier": "II",
+      "source": "pooled",
+      "rationale": "D8_pet: Tier II_in_J, but stratum S not split -> pooled fallback.",
+      "envelope": {
+        "p10": 1.5,
+        "p50": 2.8,
+        "p90": 5.2,
+        "cliffs_delta": -0.09,
+        "fdr_p": 0.73
+      }
+    },
+    {
+      "dim": "D9_gap_acceptance",
+      "tier": "II",
+      "source": "pooled",
+      "rationale": "D9_gap_acceptance: Tier II_in_J, but stratum S not split -> pooled fallback.",
+      "envelope": null
+    },
+    {
+      "dim": "D10_delta_v",
+      "tier": "II",
+      "source": "pooled",
+      "rationale": "D10_delta_v: Tier II_in_J, but stratum S not split -> pooled fallback.",
+      "envelope": null
+    },
+    {
+      "dim": "D11_rlonga",
+      "tier": "II",
+      "source": "region_specific",
+      "rationale": "D11_rlonga: Tier II_in_S, region split in stratum S.",
+      "envelope": {
+        "p10": 0.3,
+        "p50": 0.8,
+        "p90": 2.1,
+        "cliffs_delta": 0.88,
+        "fdr_p": 0.001
+      }
+    }
+  ],
+  "chat2scenario_config": {
+    "name": "region_CN_S",
+    "asam_version": "ASAM OpenSCENARIO V1.2.0",
+    "dataset_option": "AD4CHE",
+    "dataset_path_template": "./AD4CHE_V1.0/AD4CHE_Data_V1.0/DJI_{track_num}/{track_num}_tracks.csv",
+    "metric_option": "Distance-Scale",
+    "metric_suboption": "Distance Headway (DHW)",
+    "metric_threshold": "8.1 - 32.5",
+    "CA_Input": null,
+    "target_value": null,
+    "openai_key": "REPLACE_ME",
+    "model": "databricks-claude-opus-4-7",
+    "base_url": "https://<your-databricks-workspace>/serving-endpoints",
+    "output_dir": "./output/",
+    "track_nums": [
+      1
+    ],
+    "max_workers": 4,
+    "metric_options": {
+      "Distance-Scale": {
+        "Distance Headway (DHW)": "8.1 - 32.5"
+      },
+      "Acceleration-Scale": {
+        "Required Longitudinal Deceleration": "0.3 - 2.1"
+      }
+    },
+    "scenario_description": "Target vehicle cuts in front of ego in synchronized-flow highway traffic with tight headway.",
+    "_region_injector_meta": {
+      "region": "CN",
+      "stratum": "S",
+      "dims_considered": [
+        "D5_cutin_dhw",
+        "D8_pet",
+        "D9_gap_acceptance",
+        "D10_delta_v",
+        "D11_rlonga"
+      ],
+      "tier_decisions": [
+        {
+          "dim": "D5_cutin_dhw",
+          "tier": "II",
+          "source": "pooled",
+          "rationale": "D5_cutin_dhw: Tier II_in_J, but stratum S not split -> pooled fallback."
+        },
+        {
+          "dim": "D10_delta_v",
+          "tier": "II",
+          "source": "pooled",
+          "rationale": "D10_delta_v: Tier II_in_J, but stratum S not split -> pooled fallback."
+        },
+        {
+          "dim": "D11_rlonga",
+          "tier": "II",
+          "source": "region_specific",
+          "rationale": "D11_rlonga: Tier II_in_S, region split in stratum S."
+        }
+      ]
+    }
+  },
+  "xosc_path": "region_envelope_injector\\demo\\output_cutin\\scenario_CN_S_cut_in_conflict.xosc",
+  "provenance": {
+    "envelopes_source": "region_envelope_injector\\scenario_envelopes_paperlocked.json",
+    "seed": 42,
+    "paper": "Stratified Cross-National Comparison of Highway Driving Behavior (2026)"
+  }
+}

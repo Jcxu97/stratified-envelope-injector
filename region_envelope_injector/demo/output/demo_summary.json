@@ -1,0 +1,33 @@
+{
+  "description": "Ego vehicle performs four consecutive lane changes across five adjacent lanes to reach the leftmost lane on a dense, congested highway segment.",
+  "CN": {
+    "stratum": "J",
+    "sampled_params": {
+      "cutin_dhw": 6.784814650321751,
+      "lat_v_max": 0.5018293262017277,
+      "lat_a_max": 0.7463779721241413,
+      "T_LC": 5.15121616380875,
+      "pet": 1.173839621719956,
+      "lag_gap": 3.431805028301299,
+      "lead_gap": 5.479744919491107,
+      "delta_v": 1.147203797986398,
+      "ego_init_speed": 15.0
+    },
+    "xosc": "C:\\Users\\82077\\Desktop\\STLA\\CHINA specific scenarios\\region_envelope_injector\\demo\\output\\scenario_CN_J_4LC.xosc"
+  },
+  "DE": {
+    "stratum": "J",
+    "sampled_params": {
+      "cutin_dhw": 12.50066800162554,
+      "lat_v_max": 0.3350198150011674,
+      "lat_a_max": 0.494100124936948,
+      "T_LC": 6.337911481211137,
+      "pet": 2.1122964943770675,
+      "lag_gap": 6.757511046090686,
+      "lead_gap": 9.981451149881082,
+      "delta_v": 0.5525555990706452,
+      "ego_init_speed": 10.0
+    },
+    "xosc": "C:\\Users\\82077\\Desktop\\STLA\\CHINA specific scenarios\\region_envelope_injector\\demo\\output\\scenario_DE_J_4LC.xosc"
+  }
+}

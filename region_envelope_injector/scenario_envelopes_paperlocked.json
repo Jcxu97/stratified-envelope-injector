@@ -1,0 +1,599 @@
+{
+  "$schema": "scenario_envelopes.schema.json",
+  "metadata": {
+    "source": "Stratified Cross-National Comparison of Highway Driving Behavior (AD4CHE x highD, 2026)",
+    "corpora": {
+      "CN": {
+        "name": "AD4CHE",
+        "recordings": 41,
+        "frame_rate_hz": 30
+      },
+      "DE": {
+        "name": "highD",
+        "recordings": 60,
+        "frame_rate_hz": 25
+      }
+    },
+    "stratification": "Kerner three-phase (F=free, S=synchronized, J=jam)",
+    "contract_version": "1.0",
+    "effect_size_bands": {
+      "negligible": [
+        0.0,
+        0.147
+      ],
+      "small": [
+        0.147,
+        0.33
+      ],
+      "medium": [
+        0.33,
+        0.474
+      ],
+      "large": [
+        0.474,
+        1.0
+      ]
+    },
+    "note": "Deltas and (where the paper quotes them) medians / mean rates are paper-locked. Percentile shapes for dimensions that the paper only reports as a scalar delta are preserved from the original placeholder JSON, rescaled to satisfy the paper median; see metadata.provenance_per_dim.",
+    "paper_locked": true,
+    "paper_section_consulted": "IV-A / V-A / V-B of *Stratified Cross-National Comparison of Highway Driving Behavior* (2026)",
+    "provenance_per_dim": {
+      "D1_ttc_min": {
+        "S": {
+          "source": "paper_medians_delta"
+        },
+        "J": {
+          "source": "paper_medians_delta"
+        }
+      },
+      "D2_thw": {
+        "pooled": {
+          "source": "paper_prose_no_sig"
+        }
+      },
+      "D3_ttc_exposure": {
+        "J": {
+          "source": "paper_delta_only"
+        },
+        "S": {
+          "source": "placeholder_preserved"
+        }
+      },
+      "D4_idm_T": {
+        "pooled": {
+          "source": "paper_prose_no_sig"
+        }
+      },
+      "D5_cutin_dhw": {
+        "J": {
+          "source": "paper_delta_with_example_anchor"
+        },
+        "S": {
+          "source": "placeholder_preserved"
+        }
+      },
+      "D6_lc_rate": {
+        "region_invariant": {
+          "source": "paper_means_delta",
+          "note": "Strongest |delta| across S and J applied to region_invariant"
+        },
+        "S": {
+          "source": "paper_means_delta"
+        },
+        "J": {
+          "source": "paper_means_delta"
+        }
+      },
+      "D7_lc_aggressiveness": {
+        "S": {
+          "source": "paper_dualtrack_S"
+        },
+        "J": {
+          "source": "paper_dualtrack_J"
+        }
+      },
+      "D8_pet": {
+        "S": {
+          "source": "paper_dualtrack_S"
+        },
+        "J": {
+          "source": "paper_dualtrack_J_eventpooled"
+        }
+      },
+      "D9_gap_acceptance": {
+        "J": {
+          "source": "paper_delta_with_example_anchor"
+        },
+        "S": {
+          "source": "paper_delta_borderline"
+        }
+      },
+      "D10_delta_v": {
+        "J": {
+          "source": "paper_delta_only"
+        }
+      },
+      "D11_rlonga": {
+        "S": {
+          "source": "paper_delta_only"
+        }
+      },
+      "D12_heavy_veh_left_lane": {
+        "S": {
+          "source": "paper_delta_only"
+        },
+        "pooled": {
+          "source": "paper_prose_no_sig"
+        }
+      },
+      "D13_accel_dist": {
+        "J": {
+          "source": "paper_delta_metric_shift"
+        }
+      },
+      "D14_jerk": {
+        "region_invariant": {
+          "source": "paper_delta_only",
+          "note": "Strongest |delta| across S and J applied to region_invariant"
+        },
+        "S": {
+          "source": "paper_delta_only"
+        },
+        "J": {
+          "source": "paper_delta_only"
+        }
+      }
+    }
+  },
+  "dimensions": {
+    "D1_ttc_min": {
+      "name": "Car-following TTC (minima, tail)",
+      "category": "following_safety",
+      "tier": "II_in_S",
+      "unit": "s",
+      "lower_is_more_critical": true,
+      "envelopes": {
+        "S": {
+          "CN": {
+            "p10": 4.967,
+            "p50": 8.83,
+            "p90": 20.695,
+            "cliffs_delta": -0.5,
+            "fdr_p": 0.04
+          },
+          "DE": {
+            "p10": 5.46,
+            "p50": 10.08,
+            "p90": 23.1,
+            "cliffs_delta": -0.5,
+            "fdr_p": 0.04
+          }
+        },
+        "J": {
+          "pooled": {
+            "p10": 1.1,
+            "p50": 2.1,
+            "p90": 5.3,
+            "cliffs_delta": -0.68,
+            "fdr_p": 0.06
+          }
+        }
+      }
+    },
+    "D2_thw": {
+      "name": "Preferred time headway",
+      "category": "following_safety",
+      "tier": "III",
+      "unit": "s",
+      "envelopes": {
+        "pooled": {
+          "p10": 0.9,
+          "p50": 1.5,
+          "p90": 2.6,
+          "cliffs_delta": 0.06,
+          "fdr_p": 0.58
+        }
+      }
+    },
+    "D3_ttc_exposure": {
+      "name": "TTC<1.5s exposure fraction",
+      "category": "following_safety",
+      "tier": "II_in_J",
+      "unit": "fraction",
+      "envelopes": {
+        "J": {
+          "CN": {
+            "p10": 0.12,
+            "p50": 0.23,
+            "p90": 0.38,
+            "cliffs_delta": 0.88,
+            "fdr_p": 0.015
+          },
+          "DE": {
+            "p10": 0.04,
+            "p50": 0.09,
+            "p90": 0.18,
+            "cliffs_delta": 0.88,
+            "fdr_p": 0.015
+          }
+        },
+        "S": {
+          "pooled": {
+            "p10": 0.02,
+            "p50": 0.06,
+            "p90": 0.14,
+            "cliffs_delta": 0.11,
+            "fdr_p": 0.22
+          }
+        }
+      }
+    },
+    "D4_idm_T": {
+      "name": "IDM desired time gap T*",
+      "category": "following_safety",
+      "tier": "III",
+      "unit": "s",
+      "envelopes": {
+        "pooled": {
+          "p10": 0.8,
+          "p50": 1.4,
+          "p90": 2.3,
+          "cliffs_delta": 0.08,
+          "fdr_p": 0.45
+        }
+      }
+    },
+    "D5_cutin_dhw": {
+      "name": "Cut-in DHW (distance headway at cut-in completion)",
+      "category": "lane_change",
+      "tier": "II_in_J",
+      "unit": "m",
+      "lower_is_more_critical": true,
+      "envelopes": {
+        "J": {
+          "CN": {
+            "p10": 1.694,
+            "p50": 3.7,
+            "p90": 7.322,
+            "cliffs_delta": 0.24,
+            "fdr_p": 0.025
+          },
+          "DE": {
+            "p10": 5.579,
+            "p50": 13.6,
+            "p90": 30.338,
+            "cliffs_delta": 0.24,
+            "fdr_p": 0.025
+          }
+        },
+        "S": {
+          "pooled": {
+            "p10": 8.1,
+            "p50": 16.0,
+            "p90": 32.5,
+            "cliffs_delta": 0.11,
+            "fdr_p": 0.19
+          }
+        }
+      }
+    },
+    "D6_lc_rate": {
+      "name": "Lane-change rate (changes per km)",
+      "category": "lane_change",
+      "tier": "I",
+      "unit": "per_km",
+      "envelopes": {
+        "region_invariant": {
+          "CN": {
+            "p10": 0.848,
+            "p50": 1.83,
+            "p90": 3.816,
+            "cliffs_delta": 1.0,
+            "fdr_p": 0.007
+          },
+          "DE": {
+            "p10": 0.071,
+            "p50": 0.19,
+            "p90": 0.404,
+            "cliffs_delta": 1.0,
+            "fdr_p": 0.007
+          }
+        }
+      }
+    },
+    "D7_lc_aggressiveness": {
+      "name": "Lane-change aggressiveness (composite A)",
+      "category": "lane_change",
+      "tier_mixed": {
+        "S": "III_formula_artefact",
+        "J": "II"
+      },
+      "llm_safety_net": true,
+      "note": "Formula baseline saturates in S due to longitudinal velocity dominance; LLM dual-track is authoritative there.",
+      "envelopes": {
+        "J": {
+          "CN": {
+            "lat_v_max_p10": 0.3,
+            "lat_v_max_p50": 0.55,
+            "lat_v_max_p90": 0.95,
+            "lat_a_max_p10": 0.4,
+            "lat_a_max_p50": 0.85,
+            "lat_a_max_p90": 1.6,
+            "T_LC_p10": 3.5,
+            "T_LC_p50": 5.0,
+            "T_LC_p90": 7.8,
+            "unit_v": "m/s",
+            "unit_a": "m/s^2",
+            "unit_T": "s",
+            "cliffs_delta": 0.36,
+            "fdr_p": 0.011,
+            "cliffs_delta_formula": -0.33,
+            "cliffs_delta_llm": -0.21,
+            "formula_p": 0.0001,
+            "llm_p": 0.0073,
+            "A_threshold": 0.132
+          },
+          "DE": {
+            "lat_v_max_p10": 0.45,
+            "lat_v_max_p50": 0.82,
+            "lat_v_max_p90": 1.35,
+            "lat_a_max_p10": 0.6,
+            "lat_a_max_p50": 1.3,
+            "lat_a_max_p90": 2.4,
+            "T_LC_p10": 2.8,
+            "T_LC_p50": 4.1,
+            "T_LC_p90": 6.3,
+            "unit_v": "m/s",
+            "unit_a": "m/s^2",
+            "unit_T": "s",
+            "cliffs_delta": 0.36,
+            "fdr_p": 0.011,
+            "cliffs_delta_formula": -0.33,
+            "cliffs_delta_llm": -0.21,
+            "formula_p": 0.0001,
+            "llm_p": 0.0073,
+            "A_threshold": 0.132
+          }
+        },
+        "S": {
+          "pooled": {
+            "lat_v_max_p10": 0.35,
+            "lat_v_max_p50": 0.62,
+            "lat_v_max_p90": 1.05,
+            "lat_a_max_p10": 0.5,
+            "lat_a_max_p50": 1.0,
+            "lat_a_max_p90": 1.9,
+            "T_LC_p10": 3.2,
+            "T_LC_p50": 4.6,
+            "T_LC_p90": 7.1,
+            "unit_v": "m/s",
+            "unit_a": "m/s^2",
+            "unit_T": "s",
+            "cliffs_delta_llm": -0.08,
+            "cliffs_delta_formula": -0.23,
+            "llm_dominant": true,
+            "formula_p": 0.015,
+            "llm_p": 0.082
+          }
+        }
+      }
+    },
+    "D8_pet": {
+      "name": "Post-encroachment time at cut-in conflict",
+      "category": "lane_change",
+      "tier": "II_in_J",
+      "unit": "s",
+      "lower_is_more_critical": true,
+      "envelopes": {
+        "J": {
+          "CN": {
+            "p10": 1.3,
+            "p50": 2.5,
+            "p90": 4.6,
+            "cliffs_delta": 0.57,
+            "fdr_p": 0.001
+          },
+          "DE": {
+            "p10": 0.7,
+            "p50": 1.4,
+            "p90": 2.8,
+            "cliffs_delta": 0.57,
+            "fdr_p": 0.001
+          }
+        },
+        "S": {
+          "pooled": {
+            "p10": 1.5,
+            "p50": 2.8,
+            "p90": 5.2,
+            "cliffs_delta": -0.09,
+            "fdr_p": 0.73
+          }
+        }
+      }
+    },
+    "D9_gap_acceptance": {
+      "name": "MOBIL-style gap acceptance (lag gap at LC initiation)",
+      "category": "lane_change",
+      "tier": "II_in_J",
+      "unit": "m",
+      "lower_is_more_critical": true,
+      "envelopes": {
+        "J": {
+          "CN": {
+            "lead_p10": 5.2,
+            "lead_p50": 12.1,
+            "lead_p90": 24.8,
+            "lag_p10": 2.845,
+            "lag_p50": 6.8,
+            "lag_p90": 14.155,
+            "cliffs_delta": 0.27,
+            "fdr_p": 0.016
+          },
+          "DE": {
+            "lead_p10": 2.5,
+            "lead_p50": 6.8,
+            "lead_p90": 15.2,
+            "lag_p10": 13.109,
+            "lag_p50": 38.6,
+            "lag_p90": 88.125,
+            "cliffs_delta": 0.27,
+            "fdr_p": 0.016
+          }
+        }
+      }
+    },
+    "D10_delta_v": {
+      "name": "Absolute closing speed |delta_v|",
+      "category": "conflict_severity",
+      "tier": "II_in_J",
+      "unit": "m/s",
+      "envelopes": {
+        "J": {
+          "CN": {
+            "p10": 0.3,
+            "p50": 0.9,
+            "p90": 2.8,
+            "cliffs_delta": -0.88,
+            "fdr_p": 0.007
+          },
+          "DE": {
+            "p10": 0.6,
+            "p50": 1.9,
+            "p90": 5.1,
+            "cliffs_delta": -0.88,
+            "fdr_p": 0.007
+          }
+        }
+      }
+    },
+    "D11_rlonga": {
+      "name": "Required longitudinal deceleration",
+      "category": "conflict_severity",
+      "tier": "II_in_S",
+      "unit": "m/s^2",
+      "envelopes": {
+        "S": {
+          "CN": {
+            "p10": 0.3,
+            "p50": 0.8,
+            "p90": 2.1,
+            "cliffs_delta": 0.88,
+            "fdr_p": 0.001
+          },
+          "DE": {
+            "p10": 0.1,
+            "p50": 0.3,
+            "p90": 0.9,
+            "cliffs_delta": 0.88,
+            "fdr_p": 0.001
+          }
+        }
+      }
+    },
+    "D12_heavy_veh_left_lane": {
+      "name": "Heavy-vehicle leftmost-lane occupancy",
+      "category": "long_control",
+      "tier": "III",
+      "unit": "fraction",
+      "envelopes": {
+        "pooled": {
+          "p10": 0.0,
+          "p50": 0.02,
+          "p90": 0.14,
+          "cliffs_delta": 0.05,
+          "fdr_p": 0.69
+        }
+      }
+    },
+    "D13_accel_dist": {
+      "name": "Longitudinal acceleration distribution (|a|>3 m/s^2 fraction)",
+      "category": "long_control",
+      "tier": "II_in_J",
+      "unit": "fraction",
+      "envelopes": {
+        "J": {
+          "CN": {
+            "p10": 0.01,
+            "p50": 0.04,
+            "p90": 0.1,
+            "cliffs_delta": -0.92,
+            "fdr_p": 0.012
+          },
+          "DE": {
+            "p10": 0.04,
+            "p50": 0.11,
+            "p90": 0.22,
+            "cliffs_delta": -0.92,
+            "fdr_p": 0.012
+          }
+        }
+      }
+    },
+    "D14_jerk": {
+      "name": "Longitudinal jerk (|j|>5 m/s^3 fraction)",
+      "category": "long_control",
+      "tier": "I",
+      "unit": "fraction",
+      "note": "Frame-rate noise caveat: AD4CHE 30 Hz vs highD 25 Hz differencing artefact; magnitude robust across all strata.",
+      "envelopes": {
+        "region_invariant": {
+          "CN": {
+            "p10": 0.08,
+            "p50": 0.19,
+            "p90": 0.37,
+            "cliffs_delta": 1.0,
+            "fdr_p": 0.001
+          },
+          "DE": {
+            "p10": 0.02,
+            "p50": 0.06,
+            "p90": 0.14,
+            "cliffs_delta": 1.0,
+            "fdr_p": 0.001
+          }
+        }
+      }
+    }
+  },
+  "scenario_templates": {
+    "consecutive_lane_change": {
+      "description": "Ego vehicle performs N consecutive lane changes across N+1 adjacent lanes",
+      "relevant_dimensions": [
+        "D5_cutin_dhw",
+        "D6_lc_rate",
+        "D7_lc_aggressiveness",
+        "D8_pet",
+        "D9_gap_acceptance",
+        "D10_delta_v"
+      ],
+      "typical_stratum_cn": "J",
+      "typical_stratum_de": "S"
+    },
+    "close_following": {
+      "description": "Ego follows lead vehicle at close distance under specified traffic state",
+      "relevant_dimensions": [
+        "D1_ttc_min",
+        "D2_thw",
+        "D3_ttc_exposure",
+        "D4_idm_T",
+        "D10_delta_v",
+        "D11_rlonga"
+      ],
+      "typical_stratum_cn": "S",
+      "typical_stratum_de": "F"
+    },
+    "cut_in_conflict": {
+      "description": "Target vehicle cuts in front of ego with short headway",
+      "relevant_dimensions": [
+        "D5_cutin_dhw",
+        "D8_pet",
+        "D9_gap_acceptance",
+        "D10_delta_v",
+        "D11_rlonga"
+      ],
+      "typical_stratum_cn": "J",
+      "typical_stratum_de": "S"
+    }
+  }
+}

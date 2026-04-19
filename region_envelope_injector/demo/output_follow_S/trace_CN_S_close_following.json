@@ -1,0 +1,177 @@
+{
+  "request": {
+    "raw_text": "Ego closely follows a lead vehicle in synchronized flow with moderate headway.",
+    "region": "CN",
+    "template_id": "close_following",
+    "stratum": "S",
+    "num_lane_changes": 0,
+    "relevant_dimensions": [
+      "D1_ttc_min",
+      "D2_thw",
+      "D3_ttc_exposure",
+      "D4_idm_T",
+      "D10_delta_v",
+      "D11_rlonga"
+    ],
+    "notes": [
+      "synchronized keyword detected"
+    ]
+  },
+  "sampled_params": {
+    "ego_init_speed": 22.0,
+    "ttc_target": 4.967,
+    "thw": 0.9,
+    "ttc_exposure": 0.08352598732996723,
+    "idm_T": 1.1016962152609326,
+    "brake_decel": 0.366720004465612,
+    "accel_max": 0.366720004465612,
+    "lead_gap": 19.8
+  },
+  "tier_decisions": [
+    {
+      "dim": "D1_ttc_min",
+      "tier": "II",
+      "source": "region_specific",
+      "rationale": "D1_ttc_min: Tier II_in_S, region split in stratum S.",
+      "envelope": {
+        "p10": 4.967,
+        "p50": 8.83,
+        "p90": 20.695,
+        "cliffs_delta": -0.5,
+        "fdr_p": 0.04
+      }
+    },
+    {
+      "dim": "D2_thw",
+      "tier": "II",
+      "source": "pooled",
+      "rationale": "D2_thw: Tier III, but stratum S not split -> pooled fallback.",
+      "envelope": {
+        "p10": 0.9,
+        "p50": 1.5,
+        "p90": 2.6,
+        "cliffs_delta": 0.06,
+        "fdr_p": 0.58
+      }
+    },
+    {
+      "dim": "D3_ttc_exposure",
+      "tier": "II",
+      "source": "pooled",
+      "rationale": "D3_ttc_exposure: Tier II_in_J, but stratum S not split -> pooled fallback.",
+      "envelope": {
+        "p10": 0.02,
+        "p50": 0.06,
+        "p90": 0.14,
+        "cliffs_delta": 0.11,
+        "fdr_p": 0.22
+      }
+    },
+    {
+      "dim": "D4_idm_T",
+      "tier": "II",
+      "source": "pooled",
+      "rationale": "D4_idm_T: Tier III, but stratum S not split -> pooled fallback.",
+      "envelope": {
+        "p10": 0.8,
+        "p50": 1.4,
+        "p90": 2.3,
+        "cliffs_delta": 0.08,
+        "fdr_p": 0.45
+      }
+    },
+    {
+      "dim": "D10_delta_v",
+      "tier": "II",
+      "source": "pooled",
+      "rationale": "D10_delta_v: Tier II_in_J, but stratum S not split -> pooled fallback.",
+      "envelope": null
+    },
+    {
+      "dim": "D11_rlonga",
+      "tier": "II",
+      "source": "region_specific",
+      "rationale": "D11_rlonga: Tier II_in_S, region split in stratum S.",
+      "envelope": {
+        "p10": 0.3,
+        "p50": 0.8,
+        "p90": 2.1,
+        "cliffs_delta": 0.88,
+        "fdr_p": 0.001
+      }
+    }
+  ],
+  "chat2scenario_config": {
+    "name": "region_CN_S",
+    "asam_version": "ASAM OpenSCENARIO V1.2.0",
+    "dataset_option": "AD4CHE",
+    "dataset_path_template": "./AD4CHE_V1.0/AD4CHE_Data_V1.0/DJI_{track_num}/{track_num}_tracks.csv",
+    "metric_option": "Time-Scale",
+    "metric_suboption": "Time To Collision (TTC)",
+    "metric_threshold": "4.967 - 20.695",
+    "CA_Input": null,
+    "target_value": null,
+    "openai_key": "REPLACE_ME",
+    "model": "databricks-claude-opus-4-7",
+    "base_url": "https://<your-databricks-workspace>/serving-endpoints",
+    "output_dir": "./output/",
+    "track_nums": [
+      1
+    ],
+    "max_workers": 4,
+    "metric_options": {
+      "Time-Scale": {
+        "Time To Collision (TTC)": "4.967 - 20.695",
+        "Time Headway (THW)": "0.9 - 2.6"
+      },
+      "Acceleration-Scale": {
+        "Required Longitudinal Deceleration": "0.3 - 2.1"
+      }
+    },
+    "scenario_description": "Ego closely follows a lead vehicle in synchronized flow with moderate headway.",
+    "_region_injector_meta": {
+      "region": "CN",
+      "stratum": "S",
+      "dims_considered": [
+        "D1_ttc_min",
+        "D2_thw",
+        "D3_ttc_exposure",
+        "D4_idm_T",
+        "D10_delta_v",
+        "D11_rlonga"
+      ],
+      "tier_decisions": [
+        {
+          "dim": "D1_ttc_min",
+          "tier": "II",
+          "source": "region_specific",
+          "rationale": "D1_ttc_min: Tier II_in_S, region split in stratum S."
+        },
+        {
+          "dim": "D2_thw",
+          "tier": "II",
+          "source": "pooled",
+          "rationale": "D2_thw: Tier III, but stratum S not split -> pooled fallback."
+        },
+        {
+          "dim": "D10_delta_v",
+          "tier": "II",
+          "source": "pooled",
+          "rationale": "D10_delta_v: Tier II_in_J, but stratum S not split -> pooled fallback."
+        },
+        {
+          "dim": "D11_rlonga",
+          "tier": "II",
+          "source": "region_specific",
+          "rationale": "D11_rlonga: Tier II_in_S, region split in stratum S."
+        }
+      ]
+    }
+  },
+  "xosc_path": "region_envelope_injector\\demo\\output_follow_S\\scenario_CN_S_close_following.xosc",
+  "provenance": {
+    "envelopes_source": "region_envelope_injector\\scenario_envelopes_paperlocked.json",
+    "seed": 42,
+    "paper": "Stratified Cross-National Comparison of Highway Driving Behavior (2026)"
+  }
+}

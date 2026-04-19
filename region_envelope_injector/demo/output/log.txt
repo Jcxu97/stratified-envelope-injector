@@ -1,0 +1,147 @@
+esmini GIT REV: v3.0.2-0-e504e8ae
+esmini GIT TAG: v3.0.2
+esmini GIT BRANCH: tags/v3.0.2^0
+esmini BUILD VERSION: 6103
+[] [info] Loaded scenario_CN_J_4LC.xosc
+[2026-04-19 04:03:07]
+[] [info] Player options: --osc scenario_CN_J_4LC.xosc --camera_mode orbit --disable_stdout --fixed_timestep 0.04 --ground_plane auto --headless --info_text 1 --logfile_path log.txt --log_level info --record _rec.dat --text_scale 1.0 --traj_filter 0.1 
+[] [info] Run simulation decoupled from realtime, with fixed timestep: 0.04
+[] [info] Generated seed 1386229037
+[] [info] Loading scenario_CN_J_4LC.xosc (v1.2)
+[] [info] 0 variables
+[] [info] Loaded OpenDRIVE: road_network/highway_4lane.xodr
+[] [info] 3D model search paths attempted for file car_white.osgb:
+[] [info]   car_white.osgb
+[] [info]   .//./car_white.osgb
+[] [info]   C:\Users\82077\Desktop\STLA\tools\esmini\bin/../resources/models//./car_white.osgb
+[] [info]   .//../models/./car_white.osgb
+[] [warn] 3D model car_white.osgb not located, using specified file path
+[] [info] Assigned 3D model car_white.osgb to vehicle car_ego
+[] [info] Add and deactivate new object "Ego" (id 0)
+[] [warn] Info: "overwrite" priority deprecated in v1.2. Use "override" instead. Accepting it anyway.
+[] [warn] Info: "overwrite" priority deprecated in v1.2. Use "override" instead. Accepting it anyway.
+[] [warn] Info: "overwrite" priority deprecated in v1.2. Use "override" instead. Accepting it anyway.
+[] [warn] Info: "overwrite" priority deprecated in v1.2. Use "override" instead. Accepting it anyway.
+[] [info] 8 parameters:
+[] [info]    delta_v = 1.872
+[] [info]    pet_threshold = 2.760
+[] [info]    target_lag_gap = 7.217
+[] [info]    target_cutin_dhw = 4.854
+[] [info]    lc_duration = 7.800
+[] [info]    lc_lateral_accel = 0.400
+[] [info]    lc_lateral_speed = 0.950
+[] [info]    ego_init_speed = 15.000
+[0.000] [info] Recording data to file _rec.dat
+[0.000] [info] Init Ego TeleportAction initState -> startTransition -> runningState
+[0.000] [info] Starting teleport Action
+[0.000] [info] Ego New position:
+[0.000] [info] Pos(0.00, -1.75, 0.00) Rot(0.00, 0.00, 0.00) roadId 1 laneId -1 s 0.00 offset 0.00 t -1.75
+[0.000] [info] Init Ego LongitudinalAction initState -> startTransition -> runningState
+[0.000] [info] storyBoard initState -> startTransition -> runningState
+[0.000] [info] ConsecutiveLaneChanges initState -> startTransition -> runningState
+[0.000] [info] LC_1 initState -> initToStandbyTransition -> standbyState
+[0.000] [info] LC_2 initState -> initToStandbyTransition -> standbyState
+[0.000] [info] LC_3 initState -> initToStandbyTransition -> standbyState
+[0.000] [info] LC_4 initState -> initToStandbyTransition -> standbyState
+[0.000] [info] Init Ego TeleportAction runningState -> endTransition -> completeState
+[0.000] [info] Init Ego LongitudinalAction runningState -> endTransition -> completeState
+[0.040] [info] ActStart_1: true, delay: 0.00, 0.0400 > 0.0000, edge: rising
+[0.040] [info] Trigger /------------------------------------------------
+[0.040] [info] Group 0:
+[0.040] [info] ActStart_1: true
+[0.040] [info] Trigger  ------------------------------------------------/
+[0.040] [info] LC_1 standbyState -> startTransition -> runningState
+[0.040] [info] mg_lc_1 initState -> startTransition -> runningState
+[0.040] [info] maneuver_lc_1 initState -> startTransition -> runningState
+[0.040] [info] ev_lc_1 initState -> initToStandbyTransition -> standbyState
+[0.040] [info] ActStart_2: true, delay: 0.00, 0.0400 > 0.0000, edge: rising
+[0.040] [info] Trigger /------------------------------------------------
+[0.040] [info] Group 0:
+[0.040] [info] ActStart_2: true
+[0.040] [info] Trigger  ------------------------------------------------/
+[0.040] [info] LC_2 standbyState -> startTransition -> runningState
+[0.040] [info] mg_lc_2 initState -> startTransition -> runningState
+[0.040] [info] maneuver_lc_2 initState -> startTransition -> runningState
+[0.040] [info] ev_lc_2 initState -> initToStandbyTransition -> standbyState
+[0.040] [info] ActStart_3: true, delay: 0.00, 0.0400 > 0.0000, edge: rising
+[0.040] [info] Trigger /------------------------------------------------
+[0.040] [info] Group 0:
+[0.040] [info] ActStart_3: true
+[0.040] [info] Trigger  ------------------------------------------------/
+[0.040] [info] LC_3 standbyState -> startTransition -> runningState
+[0.040] [info] mg_lc_3 initState -> startTransition -> runningState
+[0.040] [info] maneuver_lc_3 initState -> startTransition -> runningState
+[0.040] [info] ev_lc_3 initState -> initToStandbyTransition -> standbyState
+[0.040] [info] ActStart_4: true, delay: 0.00, 0.0400 > 0.0000, edge: rising
+[0.040] [info] Trigger /------------------------------------------------
+[0.040] [info] Group 0:
+[0.040] [info] ActStart_4: true
+[0.040] [info] Trigger  ------------------------------------------------/
+[0.040] [info] LC_4 standbyState -> startTransition -> runningState
+[0.040] [info] mg_lc_4 initState -> startTransition -> runningState
+[0.040] [info] maneuver_lc_4 initState -> startTransition -> runningState
+[0.040] [info] ev_lc_4 initState -> initToStandbyTransition -> standbyState
+[2.040] [info] StartLC_1: true, delay: 0.00, 2.0400 > 2.0000, edge: rising
+[2.040] [info] Trigger /------------------------------------------------
+[2.040] [info] Group 0:
+[2.040] [info] StartLC_1: true
+[2.040] [info] Trigger  ------------------------------------------------/
+[2.040] [info] ev_lc_1 standbyState -> startTransition -> runningState
+[2.040] [info] act_lc_1 initState -> startTransition -> runningState
+[9.800] [info] act_lc_1 runningState -> endTransition -> completeState
+[9.800] [info] ev_lc_1 complete after 1 execution
+[9.800] [info] ev_lc_1 runningState -> endTransition -> completeState
+[9.800] [info] maneuver_lc_1 runningState -> endTransition -> completeState
+[9.800] [info] mg_lc_1 complete after 1 execution
+[9.800] [info] mg_lc_1 runningState -> endTransition -> completeState
+[9.800] [info] LC_1 runningState -> endTransition -> completeState
+[11.320] [info] StartLC_2: true, delay: 0.00, 11.3200 > 11.3000, edge: rising
+[11.320] [info] Trigger /------------------------------------------------
+[11.320] [info] Group 0:
+[11.320] [info] StartLC_2: true
+[11.320] [info] Trigger  ------------------------------------------------/
+[11.320] [info] ev_lc_2 standbyState -> startTransition -> runningState
+[11.320] [info] act_lc_2 initState -> startTransition -> runningState
+[19.080] [info] act_lc_2 runningState -> endTransition -> completeState
+[19.080] [info] ev_lc_2 complete after 1 execution
+[19.080] [info] ev_lc_2 runningState -> endTransition -> completeState
+[19.080] [info] maneuver_lc_2 runningState -> endTransition -> completeState
+[19.080] [info] mg_lc_2 complete after 1 execution
+[19.080] [info] mg_lc_2 runningState -> endTransition -> completeState
+[19.080] [info] LC_2 runningState -> endTransition -> completeState
+[20.640] [info] StartLC_3: true, delay: 0.00, 20.6400 > 20.6000, edge: rising
+[20.640] [info] Trigger /------------------------------------------------
+[20.640] [info] Group 0:
+[20.640] [info] StartLC_3: true
+[20.640] [info] Trigger  ------------------------------------------------/
+[20.640] [info] ev_lc_3 standbyState -> startTransition -> runningState
+[20.640] [info] act_lc_3 initState -> startTransition -> runningState
+[28.400] [info] act_lc_3 runningState -> endTransition -> completeState
+[28.400] [info] ev_lc_3 complete after 1 execution
+[28.400] [info] ev_lc_3 runningState -> endTransition -> completeState
+[28.400] [info] maneuver_lc_3 runningState -> endTransition -> completeState
+[28.400] [info] mg_lc_3 complete after 1 execution
+[28.400] [info] mg_lc_3 runningState -> endTransition -> completeState
+[28.400] [info] LC_3 runningState -> endTransition -> completeState
+[29.920] [info] StartLC_4: true, delay: 0.00, 29.9200 > 29.9000, edge: rising
+[29.920] [info] Trigger /------------------------------------------------
+[29.920] [info] Group 0:
+[29.920] [info] StartLC_4: true
+[29.920] [info] Trigger  ------------------------------------------------/
+[29.920] [info] ev_lc_4 standbyState -> startTransition -> runningState
+[29.920] [info] act_lc_4 initState -> startTransition -> runningState
+[33.320] [info] act_lc_4 runningState -> endTransition -> completeState
+[33.320] [info] ev_lc_4 complete after 1 execution
+[33.320] [info] ev_lc_4 runningState -> endTransition -> completeState
+[33.320] [info] maneuver_lc_4 runningState -> endTransition -> completeState
+[33.320] [info] mg_lc_4 complete after 1 execution
+[33.320] [info] mg_lc_4 runningState -> endTransition -> completeState
+[33.320] [info] LC_4 runningState -> endTransition -> completeState
+[33.320] [info] ConsecutiveLaneChanges runningState -> endTransition -> completeState
+[40.720] [info] SimTimeLimit: true, delay: 0.00, 40.7200 > 40.7000, edge: rising
+[40.720] [info] Trigger /------------------------------------------------
+[40.720] [info] Group 0:
+[40.720] [info] SimTimeLimit: true
+[40.720] [info] Trigger  ------------------------------------------------/
+[40.720] [info] storyBoard runningState -> stopTransition -> completeState
+[40.720] [info] Closing

@@ -1,0 +1,67 @@
+{
+  "name": "region_DE_S",
+  "asam_version": "ASAM OpenSCENARIO V1.2.0",
+  "dataset_option": "highD",
+  "dataset_path_template": "./highD/data/{track_num}_tracks.csv",
+  "metric_option": "Time-Scale",
+  "metric_suboption": "Time To Collision (TTC)",
+  "metric_threshold": "5.46 - 23.1",
+  "CA_Input": null,
+  "target_value": null,
+  "openai_key": "REPLACE_ME",
+  "model": "databricks-claude-opus-4-7",
+  "base_url": "https://<your-databricks-workspace>/serving-endpoints",
+  "output_dir": "./output/",
+  "track_nums": [
+    1
+  ],
+  "max_workers": 4,
+  "metric_options": {
+    "Time-Scale": {
+      "Time To Collision (TTC)": "5.46 - 23.1",
+      "Time Headway (THW)": "0.9 - 2.6"
+    },
+    "Acceleration-Scale": {
+      "Required Longitudinal Deceleration": "0.1 - 0.9"
+    }
+  },
+  "scenario_description": "Ego closely follows a lead vehicle in synchronized flow with moderate headway.",
+  "_region_injector_meta": {
+    "region": "DE",
+    "stratum": "S",
+    "dims_considered": [
+      "D1_ttc_min",
+      "D2_thw",
+      "D3_ttc_exposure",
+      "D4_idm_T",
+      "D10_delta_v",
+      "D11_rlonga"
+    ],
+    "tier_decisions": [
+      {
+        "dim": "D1_ttc_min",
+        "tier": "II",
+        "source": "region_specific",
+        "rationale": "D1_ttc_min: Tier II_in_S, region split in stratum S."
+      },
+      {
+        "dim": "D2_thw",
+        "tier": "II",
+        "source": "pooled",
+        "rationale": "D2_thw: Tier III, but stratum S not split -> pooled fallback."
+      },
+      {
+        "dim": "D10_delta_v",
+        "tier": "II",
+        "source": "pooled",
+        "rationale": "D10_delta_v: Tier II_in_J, but stratum S not split -> pooled fallback."
+      },
+      {
+        "dim": "D11_rlonga",
+        "tier": "II",
+        "source": "region_specific",
+        "rationale": "D11_rlonga: Tier II_in_S, region split in stratum S."
+      }
+    ]
+  }
+}

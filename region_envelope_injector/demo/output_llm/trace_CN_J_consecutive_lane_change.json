@@ -1,0 +1,139 @@
+{
+  "request": {
+    "raw_text": "Ego performs four consecutive lane changes in dense congested highway traffic",
+    "region": "CN",
+    "template_id": "consecutive_lane_change",
+    "stratum": "J",
+    "num_lane_changes": 4,
+    "relevant_dimensions": [
+      "D5_cutin_dhw",
+      "D6_lc_rate",
+      "D7_lc_aggressiveness",
+      "D8_pet"
+    ],
+    "notes": [
+      "LLM endpoint=databricks-claude-opus-4-7",
+      "stratum=J (LLM)"
+    ]
+  },
+  "sampled_params": {
+    "cutin_dhw": 14.88686654736597,
+    "lat_v_max": 1.315566926743993,
+    "lat_a_max": 0.7657774695957631,
+    "T_LC": 4.6592587532439875,
+    "pet": 2.7795735746392713,
+    "ego_init_speed": 15.0
+  },
+  "tier_decisions": [
+    {
+      "dim": "D5_cutin_dhw",
+      "tier": "II",
+      "source": "region_specific",
+      "rationale": "D5_cutin_dhw: Tier II_in_J, region split in stratum J.",
+      "envelope": {
+        "p10": 3.2,
+        "p50": 7.8,
+        "p90": 17.4,
+        "cliffs_delta": -0.34,
+        "fdr_p": 0.014
+      }
+    },
+    {
+      "dim": "D6_lc_rate",
+      "tier": "I",
+      "source": "region_specific",
+      "rationale": "D6_lc_rate: Tier I (region-invariant large effect across all strata).",
+      "envelope": {
+        "p10": 0.38,
+        "p50": 0.82,
+        "p90": 1.71,
+        "cliffs_delta": 0.56,
+        "fdr_p": 1.2e-09
+      }
+    },
+    {
+      "dim": "D7_lc_aggressiveness",
+      "tier": "II",
+      "source": "region_specific",
+      "rationale": "D7_lc_aggressiveness: Mixed tier -> Tier II in J, use region-specific envelope.",
+      "envelope": {
+        "lat_v_max_p10": 0.45,
+        "lat_v_max_p50": 0.82,
+        "lat_v_max_p90": 1.35,
+        "lat_a_max_p10": 0.6,
+        "lat_a_max_p50": 1.3,
+        "lat_a_max_p90": 2.4,
+        "T_LC_p10": 2.8,
+        "T_LC_p50": 4.1,
+        "T_LC_p90": 6.3,
+        "unit_v": "m/s",
+        "unit_a": "m/s^2",
+        "unit_T": "s",
+        "cliffs_delta": 0.36,
+        "fdr_p": 0.011
+      }
+    },
+    {
+      "dim": "D8_pet",
+      "tier": "II",
+      "source": "region_specific",
+      "rationale": "D8_pet: Tier II_in_J, region split in stratum J.",
+      "envelope": {
+        "p10": 0.7,
+        "p50": 1.4,
+        "p90": 2.8,
+        "cliffs_delta": -0.38,
+        "fdr_p": 0.006
+      }
+    }
+  ],
+  "chat2scenario_config": {
+    "name": "region_CN_J",
+    "asam_version": "ASAM OpenSCENARIO V1.2.0",
+    "dataset_option": "AD4CHE",
+    "dataset_path_template": "./AD4CHE_V1.0/AD4CHE_Data_V1.0/DJI_{track_num}/{track_num}_tracks.csv",
+    "metric_option": "Distance-Scale",
+    "metric_suboption": "Distance Headway (DHW)",
+    "metric_threshold": "3.2 - 17.4",
+    "CA_Input": null,
+    "target_value": null,
+    "openai_key": "REPLACE_ME",
+    "model": "databricks-claude-opus-4-7",
+    "base_url": "https://<your-databricks-workspace>/serving-endpoints",
+    "output_dir": "./output/",
+    "track_nums": [
+      1
+    ],
+    "max_workers": 4,
+    "metric_options": {
+      "Distance-Scale": {
+        "Distance Headway (DHW)": "3.2 - 17.4"
+      }
+    },
+    "scenario_description": "Ego performs four consecutive lane changes in dense congested highway traffic",
+    "_region_injector_meta": {
+      "region": "CN",
+      "stratum": "J",
+      "dims_considered": [
+        "D5_cutin_dhw",
+        "D6_lc_rate",
+        "D7_lc_aggressiveness",
+        "D8_pet"
+      ],
+      "tier_decisions": [
+        {
+          "dim": "D5_cutin_dhw",
+          "tier": "II",
+          "source": "region_specific",
+          "rationale": "D5_cutin_dhw: Tier II_in_J, region split in stratum J."
+        }
+      ]
+    }
+  },
+  "xosc_path": "region_envelope_injector\\demo\\output_llm\\scenario_CN_J_4LC.xosc",
+  "provenance": {
+    "envelopes_source": "C:\\Users\\82077\\Desktop\\STLA\\CHINA specific scenarios\\region_envelope_injector\\scenario_envelopes.json",
+    "seed": 42,
+    "paper": "Stratified Cross-National Comparison of Highway Driving Behavior (2026)"
+  }
+}
